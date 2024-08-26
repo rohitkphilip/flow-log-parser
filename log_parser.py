@@ -68,13 +68,13 @@ class LogParser:
     def export_counts(self, file_name: str) -> None:
         try:
             with io.open(file_name, mode='w') as file:
-                file.write("Tag Counts:\n")
-                file.write("Tag,Count\n")
+                file.write("Tag Counts:\n\n")
+                file.write("Tag,Count\n\n")
                 for tag, count in self._tag_count.items():
                     file.write(f"{tag},{count}\n")
 
-                file.write("\n\nPort/Protocol Combination Counts:\n")
-                file.write("Port,Protocol,Count\n")
+                file.write("\n\nPort/Protocol Combination Counts:\n\n")
+                file.write("Port,Protocol,Count\n\n")
                 for key, count in self._combination_count.items():
                     file.write(f"{key[0]},{key[1]},{count}\n")
                 
