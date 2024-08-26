@@ -4,6 +4,17 @@
 
 Python script that parses log files and maps each row to a tag based on a lookup table
 
+## Assumptions
+
+- **Supported Log Format:** default only
+- **Supported Version:** 2 only
+  
+- Input file as well as the file containing tag mappings are **plain text (ascii)files**
+- The flow log file size can be up to **10 MB**
+- The lookup file can have up to **10000 mappings**
+- The tags can map to more than one port, protocol combinations.  
+- The matches should be **case insensitive**
+
 ## Requirements
 
 - Python 3.x
