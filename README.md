@@ -22,6 +22,8 @@ Python script that parses log files and maps each row to a tag based on a lookup
 ## File Structure
 
 - `main.py`: The main script to run the parser.
+- `log_parser.py`: Python file containing the LogParser class.
+- `utils.py`: Python file containing utility functions to load the lookup table and protocol numbers.
 - `resources/lookup-table.csv`: CSV file containing the lookup table.
 - `resources/protocol-numbers.csv`: CSV file containing protocol numbers and corresponding names.
 - `log.txt`: Sample log file to be parsed.
