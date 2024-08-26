@@ -1,6 +1,11 @@
 import io
 from collections import defaultdict
 import sys
+import logging
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(filename)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 class LogParser:    
     def __init__(self, lookup_table, protocol_mapping):
@@ -11,15 +16,17 @@ class LogParser:
         
     def parse_log_file(self, log_file: str) -> None:
         try:
+            logger.info(f"Reading log file: {log_file}")
             with io.open(log_file, mode='r', buffering=1) as file:
                 for line in file:
                     self._process_line(line)
-        
+            logger.info(f"Parsed log file: {log_file}")
+
         except FileNotFoundError:
-            print(f"FILE {log_file} NOT FOUND")
+            logger.error(f"FILE {log_file} NOT FOUND")
             sys.exit(1)                
         except Exception as e:
-            print(f"ERROR PROCESSING log file {log_file} : {e}")
+            logger.error(f"ERROR PROCESSING log file {log_file} : {e}")
             sys.exit(1)
 
     def _process_line(self, line: str) -> None:
@@ -38,7 +45,7 @@ class LogParser:
             self._tag_count[tag] += 1
                 
         except Exception as e:
-            print(f"ERROR PROCESSING log line {line} : {e}")
+            logger.error(f"ERROR PROCESSING log line {line} : {e}")
             sys.exit(1)
 
     def _create_key(self, parts: list) -> tuple:    
@@ -70,6 +77,8 @@ class LogParser:
                 file.write("Port,Protocol,Count\n")
                 for key, count in self._combination_count.items():
                     file.write(f"{key[0]},{key[1]},{count}\n")
+                
+                logger.info(f"Counts saved to file: {file_name}")
         except IOError as e:
-            print(f"Error writing to file {file_name}: {e}")
+            logger.error(f"Error writing to file {file_name}: {e}")
             sys.exit(1)
