@@ -6,8 +6,8 @@ Python script that parses log files and maps each row to a tag based on a lookup
 
 ## Assumptions
 
-- **Supported Log Format:** default only
-- **Supported Version:** 2 only
+- Supported Log Format: **default** only
+- Supported Version: **2** only
   
 - Input file as well as the file containing tag mappings are **plain text (ascii)files**
 - The flow log file size can be up to **10 MB**
